@@ -1,3 +1,4 @@
+require("dotenv").config;
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -9,11 +10,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "bipin",
-  database: "joinUs",
-  port: 3306,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 connection.connect((err) => {
   if (err) {
